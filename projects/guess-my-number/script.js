@@ -23,6 +23,9 @@ const changeBgColor = function(color){
 const changeNumWidth = function(width){
     document.querySelector('.number').style.width = width;
 }
+const changeChckState = function(state){
+  document.querySelector('.check').disabled = state;
+}
 
 // the game logic
 // event button 'check' clicked
@@ -37,9 +40,9 @@ document.querySelector('.check').addEventListener('click', function () {
   } else if (guess === secretNumber) {
     displayMessage('🎉 Corect Number!');
     displayNumber(secretNumber);
-
     changeBgColor('#60b347');
-    document.querySelector('.number').style.width = '30rem';
+    changeNumWidth('30rem');
+    changeChckState(true);
 
     if (score > highScore) {
         highScore = score
@@ -54,7 +57,7 @@ document.querySelector('.check').addEventListener('click', function () {
     } else {
       displayMessage('💥 You lost the game!');
       displayScore(0);
-      document.querySelector('.check').disabled = true
+      changeChckState(true);
     }
   }
     
@@ -71,4 +74,5 @@ document.querySelector('.again').addEventListener('click', function () {
   document.querySelector('.guess').value = '';
   changeBgColor('#222');
   changeNumWidth('15rem');
+  changeChckState(false);
 });
