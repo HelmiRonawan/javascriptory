@@ -13,14 +13,26 @@ const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 
 // Starting conditions
-score0El.textContent = 0;
-score1El.textContent = 0;
-diceEl.classList.add('hidden');
+let scores, curentScore, activePlayer, playing;
 
-const scores = [0, 0];
-let curentScore = 0;
-let activePlayer = 0;
-let playing = true;
+const init = function () {
+  scores = [0, 0];
+  curentScore = 0;
+  activePlayer = 0;
+  playing = true;
+
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  curent0El.textContent = 0;
+  curent1El.textContent = 0;
+
+  diceEl.classList.add('hidden');
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
+};
+init();
 
 const switchPlayer = function () {
   document.getElementById(`current--${activePlayer}`).textContent = 0;
@@ -52,6 +64,7 @@ btnRoll.addEventListener('click', function () {
   }
 });
 
+// Holding current value dice to score functionally
 btnHold.addEventListener('click', function () {
   if (playing) {
     // 1. Add curent score to active player's score
@@ -75,3 +88,6 @@ btnHold.addEventListener('click', function () {
     }
   }
 });
+
+// Resetting the game functionally
+btnNew.addEventListener('click', init);
