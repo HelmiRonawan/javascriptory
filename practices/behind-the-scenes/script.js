@@ -81,3 +81,40 @@ console.log(x === window.x);
 console.log(y === window.y);
 console.log(z === window.z);
 
+// This keyword
+console.log('===This Keyword===');
+console.log(this);
+
+const calccAge = function(birthYear){
+  console.log(2037 - birthYear);
+  console.log(this);
+}
+calccAge(1991);
+
+const calcAgeArrow = birthYear => {
+  console.log(2037 - birthYear);
+  console.log(this);
+}
+
+calcAgeArrow(1980);
+
+const Jonas = {
+  year: 1991,
+  calcAge: function(){
+    console.log(2037 - this.year)
+  }
+}
+Jonas.calcAge()
+
+const matilda = {
+  year: 2017
+}
+
+matilda.calcAge = Jonas.calcAge;
+console.log(Jonas)
+console.log(matilda)
+matilda.calcAge();
+
+const f = Jonas.calcAge;
+console.log(f);
+f();
