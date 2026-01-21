@@ -1,4 +1,5 @@
 'use strict';
+/*
 // Scope
 console.log('===Scope===');
 function calcAge(birthYear) {
@@ -118,3 +119,51 @@ matilda.calcAge();
 const f = Jonas.calcAge;
 console.log(f);
 f();
+*/
+// Functon regular vs. function arrow
+//var firstName = 'Matilda'
+const jonas = {
+  firstName: 'Jonas',
+  year: 1991,
+  calcAge: function(){
+    console.log(2037 - this.year)
+    
+    // arrow function solve modern for using self, bcs 'this' in arrw funct is calcAge scope
+    const isMillenial = () => {
+      console.log(this);
+      console.log(this.year >= 1981 && this.year <=1996);
+
+      // use self inside arw fuction, cuz funct isOld 'this' is undefined so solve it with self
+      //const self = this
+      // const isOld = function(){
+      //   console.log(self.year < 2026 ? 'TO old' : 'to young');
+      // }
+      const isOld = ()=>{ // use arr funct inside arr funct so not need 'self' var
+        console.log(self.year < 2026 ? 'TO old' : 'to young');
+      }
+      isOld()
+      // arrow function don't have 'this' keyword, and 'this' will point to object parent scope
+    }
+    isMillenial()
+  },
+  greet: () => {
+    console.log(this);
+    console.log(`Hey ${this.firstName}`)}
+}
+jonas.greet()
+jonas.calcAge()
+
+// Arguments Keyword
+const addExpr = function(a,b){
+  console.log(arguments);
+  return a + b;
+}
+addExpr(2,3);
+addExpr(2,3,4,5);
+
+const addArr = (a,b) => {
+  console.log(arguments);
+  return a + b;
+}
+
+addArr();
