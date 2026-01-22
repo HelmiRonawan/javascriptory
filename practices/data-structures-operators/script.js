@@ -6,12 +6,69 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22
+    },
+    fri: {
+      open: 11,
+      close: 23
+    },
+    sat: {
+      open: 0, // Open 24 hours
+      close: 24
+    }
+  },
 
-  order: function(iStart, iMenu){
-    return [this.starterMenu[iStart], this.mainMenu[iMenu]];
+  order: function(iStart, iMain){
+    return [this.starterMenu[iStart], this.mainMenu[iMain]];
+  },
+
+  orderDelivery: function({iStart = 1, iMain = 0, time = '20:00', address}){
+    console.log(`Order received! ${this.starterMenu[iStart]} and ${this.mainMenu[iMain]} will be delivered to ${address} at ${time}`);
+    
   }
 };
 
+// function if we don't know spesific parameter and destructing the object
+restaurant.orderDelivery({
+  time: '22:30',
+  address: 'Via del Sole, 21',
+  iMain: 2,
+  iStart: 2
+});
+
+restaurant.orderDelivery({
+  address: 'Jl. Lingkar Selatan'
+})
+
+const {name, openingHours, categories} = restaurant;
+console.log(name, openingHours, categories);
+
+const {name: restaurantName, openingHours: hours, categories: tags} = restaurant;
+console.log(restaurantName, hours, tags);
+
+// Default Values
+let {menu= [], starterMenu: starters = []} = restaurant;
+console.log(menu, starters);
+
+// Mutating variables
+let a = 111;
+let b = 999;
+const obj = {a: 23, b: 7, c: 14};
+({a,b} = obj);
+console.log(a, b);
+
+// Nested object destrc                     }
+const {fri: {open: friOpen, close: friClose}, sat: {open: satOpen, close: satClose}, thu: {open: thuOpen, close: thuClose}} = openingHours;
+console.log(friOpen, friClose);
+console.log(satOpen, satClose);
+console.log(thuOpen, thuClose);
+
+/*
+//////////////////////////////////////////////////
+// Destrcuturing Arrays
 const arr = [2, 3, 4];
 const a = arr[0];
 const b = arr[1];
@@ -45,3 +102,5 @@ console.log(i, j, k);
 // Default values
 const [p=1, q=1, r=1] = [8];
 console.log(p, q, r);
+*/
+/////////////////////////////////////////////////
