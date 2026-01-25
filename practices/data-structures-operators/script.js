@@ -37,11 +37,34 @@ const restaurant = {
     );
   },
 
-  orederPizza: function(mainIngredient, ...otherIngredients){
+  orderPizza: function(mainIngredient, ...otherIngredients){
     console.log(`Here is your delicious pizza with main ingredient ${mainIngredient} and other side ingredient ${otherIngredients} as a complement `)
   }
 };
 
+//Short circuit
+console.log('--- OR ---');
+console.log(3 || 'Jonas');
+console.log('' || 'Jonas');
+console.log(true || 0);
+console.log(undefined || null);
+console.log(undefined || 0 || '' || 'hello' || 23 || null);
+
+restaurant.numGuests = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+const guests2 = restaurant.numGuests || 10;
+console.log(guests1, guests2);
+
+console.log('--- AND ---');
+if(restaurant.orderPizza){
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'ham', 'spinach')
+
+
+/*
+//////////////////////////////////////////////////
 // 1) Destructuring
 // Rest pattern
 const [a, b, ...others] = [1, 2, 3, 4, 5];
@@ -74,10 +97,9 @@ add(8,2,5,3,2,1,4);
 const x = [23, 5, 7]
 add(...x);
 
-restaurant.orederPizza('mushrooms', 'onion', 'olives', 'spinach');
+restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
 
-/*
-//////////////////////////////////////////////////
+
 // Spread Operator
 const arr = [7, 8, 9];
 const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
