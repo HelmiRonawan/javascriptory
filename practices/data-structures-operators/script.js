@@ -42,6 +42,14 @@ const restaurant = {
   }
 };
 
+// Nullish Coalescing Operator
+// Nullish: null and undefined (NOT 0 or '')
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests ?? 10;
+console.log(guests);
+
+/*
+//////////////////////////////////////////////////
 //Short circuit
 console.log('--- OR ---');
 console.log(3 || 'Jonas');
@@ -63,8 +71,6 @@ if(restaurant.orderPizza){
 restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'ham', 'spinach')
 
 
-/*
-//////////////////////////////////////////////////
 // 1) Destructuring
 // Rest pattern
 const [a, b, ...others] = [1, 2, 3, 4, 5];
