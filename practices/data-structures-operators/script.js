@@ -42,13 +42,43 @@ const restaurant = {
   }
 };
 
+const rest1 ={
+  name: 'Capri',
+  // numGuests: 20
+  numGuests: 0
+};
+
+const rest2 ={
+  name: 'La Piaza',
+  owner: 'Giovanni Rossi'
+};
+
+// OR assignment operator
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+
+// Nullis assignment operator
+rest1.numGuests ??= 10
+rest2.numGuests ??= 10
+
+// And assignment operator
+// rest1.owner = rest1.owner && '<ANONYMOUS>';
+// rest2.owner = rest2.owner && '<ANONYMOUS>';
+
+rest1.owner &&= '<ANONYMOUS>';
+rest2.owner &&= '<ANONYMOUS>';
+
+console.log(rest1);
+console.log(rest2);
+
+/*
 // Nullish Coalescing Operator
 // Nullish: null and undefined (NOT 0 or '')
 restaurant.numGuests = 0;
 const guests = restaurant.numGuests ?? 10;
 console.log(guests);
 
-/*
+
 //////////////////////////////////////////////////
 //Short circuit
 console.log('--- OR ---');
