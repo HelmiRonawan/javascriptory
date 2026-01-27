@@ -42,6 +42,18 @@ const restaurant = {
   }
 };
 
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu]
+
+for(const item of menu) console.log(item);
+
+for(const [i, el] of menu.entries()) {
+  console.log(`${i + 1}: ${el}`);
+}
+
+// console.log([...menu.entries()]);
+
+/*
+//////////////////////////////////////////////////
 const rest1 ={
   name: 'Capri',
   // numGuests: 20
@@ -71,7 +83,6 @@ rest2.owner &&= '<ANONYMOUS>';
 console.log(rest1);
 console.log(rest2);
 
-/*
 // Nullish Coalescing Operator
 // Nullish: null and undefined (NOT 0 or '')
 restaurant.numGuests = 0;
@@ -79,7 +90,6 @@ const guests = restaurant.numGuests ?? 10;
 console.log(guests);
 
 
-//////////////////////////////////////////////////
 //Short circuit
 console.log('--- OR ---');
 console.log(3 || 'Jonas');
