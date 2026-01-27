@@ -1,47 +1,55 @@
 'use strict';
 
+const weekDays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+
+const hours = {
+  [weekDays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekDays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [`day-${2+4}`]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
-
-  order: function (iStart, iMain) {
+  hours,
+  order(iStart, iMain) {
     return [this.starterMenu[iStart], this.mainMenu[iMain]];
   },
 
-  orderDelivery: function ({ iStart = 1, iMain = 0, time = '20:00', address }) {
+  orderDelivery({ iStart = 1, iMain = 0, time = '20:00', address }) {
     console.log(
       `Order received! ${this.starterMenu[iStart]} and ${this.mainMenu[iMain]} will be delivered to ${address} at ${time}`,
     );
   },
 
-  orderPasta: function (ing1, ing2, ing3) {
+  orderPasta(ing1, ing2, ing3) {
     console.log(
       `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`,
     );
   },
 
-  orderPizza: function(mainIngredient, ...otherIngredients){
-    console.log(`Here is your delicious pizza with main ingredient ${mainIngredient} and other side ingredient ${otherIngredients} as a complement `)
-  }
+  orderPizza(mainIngredient, ...otherIngredients) {
+    console.log(
+      `Here is your delicious pizza with main ingredient ${mainIngredient} and other side ingredient ${otherIngredients} as a complement `,
+    );
+  },
 };
 
+/*
+//////////////////////////////////////////////////
+// For of loop
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu]
 
 for(const item of menu) console.log(item);
@@ -52,8 +60,7 @@ for(const [i, el] of menu.entries()) {
 
 // console.log([...menu.entries()]);
 
-/*
-//////////////////////////////////////////////////
+
 const rest1 ={
   name: 'Capri',
   // numGuests: 20
