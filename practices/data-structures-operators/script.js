@@ -1,8 +1,8 @@
 'use strict';
 
-const weekDays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+const weekDays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
-const hours = {
+const openingHours = {
   [weekDays[3]]: {
     open: 12,
     close: 22,
@@ -11,7 +11,7 @@ const hours = {
     open: 11,
     close: 23,
   },
-  [`day-${2+4}`]: {
+  [weekDays[5]]: {
     open: 0, // Open 24 hours
     close: 24,
   },
@@ -23,7 +23,7 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-  hours,
+  openingHours,
   order(iStart, iMain) {
     return [this.starterMenu[iStart], this.mainMenu[iMain]];
   },
@@ -46,6 +46,36 @@ const restaurant = {
     );
   },
 };
+// Optional chain
+if (restaurant.openingHours && restaurant.openingHours.mon) {
+  console.log(restaurant.openingHours.mon.open);
+}
+
+// With optional chaining
+console.log(restaurant.openingHours.mon?.open ?? 'Not valid');
+console.log(restaurant.openingHours?.thu?.open);
+
+// Example
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+console.log('===Opening Days===');
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? 'closed';
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+// Methods
+console.log(restaurant.order?.(0,1) || "Method does not exist");
+console.log(restaurant.orderRisotto?.(0,1) || "Method does not exist");
+
+// Arrays
+const users = [
+  {
+    name: 'Jonas',
+    email: 'hello@jonas.io'
+  }
+]
+
+console.log(users[0]?.name ?? 'User array empty');
 
 /*
 //////////////////////////////////////////////////
