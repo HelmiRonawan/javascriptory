@@ -47,6 +47,34 @@ const restaurant = {
   },
 };
 
+const arr = () => `this halo`;
+const orderSet = new Set([
+  'Pasta', 
+  'Pizza', 
+  'Pizza',
+  'Risotto', 
+  'Pasta'])
+
+console.log(orderSet.size);
+console.log(orderSet.has('Pizza'));
+console.log(orderSet.has('Bread'));
+orderSet.add('Garlic Bread');
+orderSet.add('Garlic Bread');
+orderSet.delete('Risotto');
+// orderSet.clear();
+console.log(orderSet);
+
+for (const order of orderSet){
+  console.log(`Ordered ${order}`);
+}
+
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+console.log(new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size);
+console.log(new Set('jonasschemedtmann').size);
+
+/*
 // Looping Objects: Keys, Vales, and Entries
 // Property NAMES
 const properties = Object.keys(openingHours)
@@ -67,8 +95,6 @@ for (const [key,{open, close}] of entries){
   console.log(`On ${key} we open at ${open} and close at ${close}`);
 }
 
-
-/*
 // Optional chain
 if (restaurant.openingHours && restaurant.openingHours.mon) {
   console.log(restaurant.openingHours.mon.open);
